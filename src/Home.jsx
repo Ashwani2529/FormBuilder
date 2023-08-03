@@ -3,7 +3,6 @@ import "./index.css";
 import Category from "./components/Category";
 import Comprehension from "./components/Comprehension";
 import Cloze from "./components/Cloze";
-import Render from "./Render";
 
 const Home = () => {
   const [finalForm, setFinalForm] = useState({
@@ -39,11 +38,7 @@ const Home = () => {
       <button className="btn btn-info my-3" onClick={handleSaveForm}>
         Save Form{" "}
       </button>
-      {finalForm ? (
-        <Render finalForm={finalForm} />
-      ) : (
-        <p>No form data to render.</p>
-      )}
+    
     </>
   );
 };

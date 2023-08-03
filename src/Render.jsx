@@ -1,86 +1,80 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const Render = ({ finalForm }) => {
-  const { category, cloze, comprehension } = finalForm;
+const Render = () => {
+  const [formData, setFormData] = useState([]);
+
+  useEffect(() => {   
+    const fetchFormData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/getForm');
+        setFormData(response.data);
+      } catch (error) {
+        console.error('Error fetching form data:', error);
+      }
+    };
+
+    fetchFormData();
+  }, []);
 
   return (
     <div>
-      <h1>Form Render</h1>
-      <div className="form-container my-4">
-        <div className="form-section my-2">
-          <h2>Question 1</h2>
-          <h3>Categories The Followings</h3>
-          <h5>Categories</h5>
-          <p>{category.categories.join(", ")}</p>
-        </div>
-        <div className="form-section my-3">
-          <h3>Items</h3>
-          <div className="items-container my-2">
-            {category.items.map((item, index) => (
-              <div key={item.id} className="item mx-3 my-0">
-                <p>{item.title}</p>
-                <p>Category: {item.category}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {formData.map((formPart, index) => (
+        <div key={index}>
+          {formPart.Category && (
+            <div>
+              <h2>Category</h2>
+              <ul>
+                {formPart.Category.map((categoryItem) => (
+                  <li key={categoryItem._id}>
+                    <h3>Category: {categoryItem.category}</h3>
+                    <p>Item: {categoryItem.item}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-      <div className="cloze-container my-5">
-        <h2>Question 2</h2>
-        <div className="cloze-section my-4">
-          <label htmlFor="sentence">Sentence:</label>
-          <textarea
-            id="sentence"
-            value={cloze.sentence}
-            readOnly
-            placeholder="Type the full sentence or paragraph normally"
-          ></textarea>
-          <h3 className="my-3">Options</h3>
-          <div className="options-container">
-            {cloze.options.map((option) => (
-              <div key={option} className="option my-3">
-                <p>{option}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+          {formPart.Cloze && (
+            <div>
+              <h2>Cloze</h2>
+              <h3>Sentence: {formPart.Cloze.sentence}</h3>
+              <h3>Options:</h3>
+              <ul>
+                {formPart.Cloze.words.map((option, index) => (
+                  <li key={index}>Option {index + 1}: {option}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-      {/* Comprehension Form Data */}
-      <div className="comprehension-container my-5">
-        <h2>Question 3</h2>
-        <div>
-          <div className="passage-section">
-            <h3>Passage</h3>
-            <textarea
-              value={comprehension.passage}
-              readOnly
-              placeholder="Enter the passage for the comprehension"
-            ></textarea>
-          </div>
-          <div className="questions-section">
-            <h3>Questions</h3>
-            {comprehension.questions.map((question, index) => (
-              <div key={index} className="question">
-                <h4>Question {index + 1}</h4>
-                <p>Type: {question.type}</p>
-                <p>Question: {question.question}</p>
-                <div>
-                  <h5>Options</h5>
-                  {question.options.map((option, optionIndex) => (
-                    <p key={optionIndex}>
-                      Option {optionIndex + 1}: {option}
-                    </p>
-                  ))}
-                  <p>Correct Answer: Option {question.correctAnswer + 1}</p>
-                </div>
-                <p>Points for the right answer: {question.points}</p>
-              </div>
-            ))}
-          </div>
+          {formPart.Comprehension && (
+            <div>
+              <h2>Comprehension</h2>
+              <h3>Passage:</h3>
+              <p>{formPart.Comprehension.passage}</p>
+              <h3>Questions:</h3>
+              <ul>
+                {formPart.Comprehension.questions.map((question, index) => (
+                  <li key={index}>
+                    <h4>Question {index + 1}</h4>
+                    <p>Type: {question.type}</p>
+                    <p>Question: {question.question}</p>
+                    <h5>Options:</h5>
+                    <ul>
+                      {question.options.map((option, optionIndex) => (
+                        <li key={optionIndex}>Option {optionIndex + 1}: {option}</li>
+                      ))}
+                    </ul>
+                    <p>Correct Answer: Option {question.correctAnswer + 1}</p>
+                    <p>Points for the right answer: {question.points}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-      </div>
+      ))}
     </div>
   );
 };

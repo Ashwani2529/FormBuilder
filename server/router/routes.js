@@ -72,4 +72,16 @@ router.post("/saveForm", async (req, res) => {
   }
 });
 
+//fetchform_to_render.jsx
+
+app.get('/getForm', async (req, res) => {
+  try {
+    const formData = await Form.find();
+    res.json(formData);
+  } catch (err) {
+    console.error('Error fetching form data:', err);
+    res.status(500).json({ error: 'Error fetching form data' });
+  }
+});
+
 module.exports = router;
