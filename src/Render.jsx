@@ -8,6 +8,7 @@ const Render = () => {
     const fetchFormData = async () => {
       try {
         const response = await axios.get('http://localhost:5000/getForm');
+        console.log(response)
         setFormData(response.data);
       } catch (error) {
         console.error('Error fetching form data:', error);
@@ -38,10 +39,10 @@ const Render = () => {
           {formPart.Cloze && (
             <div>
               <h2>Cloze</h2>
-              <h3>Sentence: {formPart.Cloze.sentence}</h3>
+              <h3>Sentence: {formPart.Cloze[0].sentence}</h3>
               <h3>Options:</h3>
               <ul>
-                {formPart.Cloze.words.map((option, index) => (
+                {formPart.Cloze[0].words.map((option, index) => (
                   <li key={index}>Option {index + 1}: {option}</li>
                 ))}
               </ul>
@@ -52,10 +53,10 @@ const Render = () => {
             <div>
               <h2>Comprehension</h2>
               <h3>Passage:</h3>
-              <p>{formPart.Comprehension.passage}</p>
+              <p>{formPart.Comprehension[0].passage}</p>
               <h3>Questions:</h3>
               <ul>
-                {formPart.Comprehension.questions.map((question, index) => (
+                {formPart.Comprehension.map((question, index) => (
                   <li key={index}>
                     <h4>Question {index + 1}</h4>
                     <p>Type: {question.type}</p>

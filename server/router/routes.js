@@ -4,7 +4,7 @@ const Category = require("../schemas/category.js");
 const Cloze = require("../schemas/cloze.js");
 const Comprehension = require("../schemas/comprehension.js");
 const Form = require("../schemas/form.js");
-
+const app = express();
 const saveCategoryQuestions = async (categoryQuestions) => {
   const ids = [];
   for (const ques of categoryQuestions) {
@@ -74,9 +74,9 @@ router.post("/saveForm", async (req, res) => {
 
 //fetchform_to_render.jsx
 
-app.get('/getForm', async (req, res) => {
+router.get('/getForm', async (req, res) => {
   try {
-    const formData = await Form.find();
+    const formData = await Form.find().populate('Category').populate('Cloze').populate('Comprehension');
     res.json(formData);
   } catch (err) {
     console.error('Error fetching form data:', err);
