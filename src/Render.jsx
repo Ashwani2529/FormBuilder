@@ -89,11 +89,11 @@ const Render = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="form-container">
+      <div className="form-container my-2">
         {formData.map((formPart, index) => (
-          <div key={index} className="form-part">
+          <div key={index} className="form-part my-5">
             {formPart.Category && (
-              <div className="category">
+              <div className="category my-4">
                 <h2>Category</h2>
                 <ul>
                   {formPart.Category.map((categoryItem) => (
@@ -116,7 +116,7 @@ const Render = () => {
             {/* {formPart.Cloze && ( <div> <h2>Cloze</h2> <h3>Sentence: {clozeSentenceArr.map((word)=>{return <span>{(!formPart.Cloze[0].words.includes(word))?word+" ": <select> {formPart.Cloze[0].words.map((option, index) => ( <option key={index}>{option}</option> ))} </select> }</span>})}</h3> </div> )} */}
 
             {formPart.Cloze && (
-              <div>
+              <div className="cloze my-5">
                 <h2>Cloze</h2>
                 <h3>Sentence:</h3>
                 <EmptyField onDrop={(option) => handleDropOption(option, index)}>
@@ -148,7 +148,7 @@ const Render = () => {
             )}
 
             {formPart.Comprehension.map((question, questionIndex) => (
-              <div key={questionIndex}>
+              <div className="comprehension my-5" key={questionIndex}>
                 <h3>Comprehension</h3>
                
                 <p>Question: {question.question}</p>
