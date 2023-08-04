@@ -1,4 +1,8 @@
 .form-container {
+display: flex;
+align-items: center;
+justify-content:space-between;
+flex-direction: unset;
     margin: 20px auto;
     max-width: 100%;
     padding: 20px;
@@ -9,16 +13,18 @@
 
   
   .form-part {
+    width: 100%;
+    display: block;
+align-items: center;
+justify-content: space-between;
     margin-bottom: 30px;
   }
  
   .category{
     display: block;
-    width: 210%;
-    margin-left: -57%;
+    width: 100%;
+    justify-content: center;
     align-items: center;
-    float: left;
-    /* justify-content: center; */
     background-color: rgb(171, 171, 226);
     
 
@@ -30,18 +36,15 @@
   }
   .comprehension{
     display: block;
-    width: 210%;
-    margin-left: -55%;
+    width: 100%;
+    justify-content: center;
     align-items: center;
-    float: left;
     background-color: rgb(188, 221, 188);
   }
   .cloze{
     display: block;
-    width: 210%;
-    margin-left: -55%;
+    width: 100%;
     align-items: center;
-    float: left;
     background-color: #c1f3de;
   }
   h3 {
@@ -51,7 +54,6 @@
   }
   .some{
 display: flex;
-/* align-items: center; */
 justify-content: space-between;
   }
   
