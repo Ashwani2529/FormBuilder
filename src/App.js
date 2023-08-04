@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Render from "./Render";
+import Forms from "./Forms";
 
 function App() {
   
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
          <Route path="/render" element={<Render/>}/>
+         <Route path="/forms" element={<Forms/>}/>
 
         </Routes>
       </Router>
