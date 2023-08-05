@@ -11,18 +11,20 @@ const Home = () => {
     comprehension: null,
   });
   const handleSaveForm = async () => {
-    console.log(finalForm);
+    // console.log(finalForm);
     try {
-      const resp = await fetch("http://localhost:5000/saveForm", {
+      const resp = await fetch("http://localhost:5000/saveForms", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(finalForm),
       });
+      // resp.send();
+      
       const result = await resp.json();
-      // setFinalForm(result);
-      console.log(result);
+      setFinalForm(result);
+      // console.log(result);
     } catch (err) {
       console.log(err);
     }

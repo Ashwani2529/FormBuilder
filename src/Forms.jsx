@@ -1,30 +1,104 @@
 import React from 'react';
-
+let i=1;
 const Forms = () => {
   return (
-    <div className="card-group mx-3 my-3">
-      <div className="card ">
-        <img className="card-img-top" src="..." alt="" />
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-      <div className="card mx-3 ">
-        <img className="card-img-top" src="..." alt="" />
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-      <div className="card mx-3">
-        <img className="card-img-top" src="..." alt="" />
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-          <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+    <div className="album py-5 bg-light">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <div className="card mb-4 box-shadow">
+              <img
+                className="card-img-top"
+                src="https://source.unsplash.com/collection/diary/198x225"
+                alt=""
+                style={{ height: '225px', width: '100%', display: 'block' }}
+              />
+              <div className="card-body">
+                <p className="card-text">
+                  {`Form ${i}`}
+                </p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="btn-group">
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-secondary"
+                    >
+                      View
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-secondary"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card mb-4 box-shadow">
+              <img
+                className="card-img-top"
+                src="https://source.unsplash.com/collection/forms/198x225"
+                alt=""
+                style={{ height: '225px', width: '100%', display: 'block' }}
+              />
+              <div className="card-body">
+                <p className="card-text">
+                {`Form ${i+1}`}
+                </p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="btn-group">
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-secondary"
+                    >
+                      View
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-secondary"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card mb-4 box-shadow">
+              <img
+                className="card-img-top"
+                src="https://source.unsplash.com/collection/book/198x225"
+                alt=""
+                style={{ height: '225px', width: '100%', display: 'block' }}
+              />
+              <div className="card-body">
+                <p className="card-text">
+                {`Form ${i+2}`}
+                </p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="btn-group">
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-secondary"
+                    >
+                      View
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-secondary"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
         </div>
       </div>
     </div>

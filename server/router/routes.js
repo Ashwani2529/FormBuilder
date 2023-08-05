@@ -4,7 +4,15 @@ const Category = require("../schemas/category.js");
 const Cloze = require("../schemas/cloze.js");
 const Comprehension = require("../schemas/comprehension.js");
 const Form = require("../schemas/form.js");
-const app = express();
+
+const mongoose = require("mongoose");
+
+const responseSchema = new mongoose.Schema({
+  responses:{type: Object,required:false},
+});
+
+const Response = mongoose.model('Response', responseSchema);
+
 const saveCategoryQuestions = async (categoryQuestions) => {
   const ids = [];
   for (const ques of categoryQuestions) {
@@ -32,7 +40,9 @@ const saveClozeQuestions = async (clozeQuestions) => {
 
 // Function to save Comprehension questions
 const saveComprehensionQuestions = async (comprehensionQuestions, passage) => {
+
   const ids = [];
+  console.log(comprehensionQuestions);
   for (const ques of comprehensionQuestions) {
     const newQues = Comprehension({
       passage: passage,
@@ -45,8 +55,8 @@ const saveComprehensionQuestions = async (comprehensionQuestions, passage) => {
   return ids;
 };
 
-// Main route to handle form submission and save data to MongoDB
-router.post("/saveForm", async (req, res) => {
+ // Main route to handle form submission and save data to MongoDB
+router.post("/saveForms", async (req, res) => {
   try {
     const { comprehension, cloze, category } = req.body;
     const categoryIds = await saveCategoryQuestions(category.items);
@@ -55,8 +65,6 @@ router.post("/saveForm", async (req, res) => {
       comprehension.updatedQuestions,
       comprehension.passage
     );
-    // console.log("hi")
-
     const newForm = Form({
       Category: categoryIds,
       Cloze: clozeIds,
@@ -77,11 +85,21 @@ router.post("/saveForm", async (req, res) => {
 router.get('/getForm', async (req, res) => {
   try {
     const formData = await Form.find().populate('Category').populate('Cloze').populate('Comprehension');
+    // console.log(formData);
     res.json(formData);
   } catch (err) {
     console.error('Error fetching form data:', err);
     res.status(500).json({ error: 'Error fetching form data' });
   }
+});
+router.post('/saveresp', async (req, res) => {
+  const { responses } = req.body;
+  // console.log( "response" , responses);
+  const newResponse = new Response({ responses });
+  // console.log("newresponse: " , newResponse)
+  const savedResp=await newResponse.save();
+  // console.log(savedResp)
+  res.json({data: savedResp.responses })
 });
 
 module.exports = router;

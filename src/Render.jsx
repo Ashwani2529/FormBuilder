@@ -5,40 +5,80 @@ import "./Render.css";
 
 const Render = () => {
   const [formData, setFormData] = useState([]);
+  const [comprehensionAnswers, setComprehensionAnswers] = useState({});
   const [categoryAnswers,setCategoryAnswers]=useState();
+    const [formedSentence, setFormedSentence] = useState("");
   const [clozeSentenceArr, setClozeSentenceArr] = useState([]);
+ 
+  const handleSaveResponses = async() => {
+    const allResponses = {
+      comprehensionAnswers,
+      categoryAnswers,
+      formedSentence,
+    };
+    // console.log("all responses: ",allResponses);
+  
+   const res= await fetch("http://localhost:5000/saveresp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({responses:allResponses}),
+    });
+    // eslint-disable-next-line
+      const data=await res.json();
+      // console.log("dataaaa: ",data);
+  };
+  
   useEffect(() => {
     const fetchFormData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/getForm");
-        console.log(response);
+        // console.log(response);
         setFormData(response.data);
         setClozeSentenceArr(response.data[0].Cloze[0].sentence.split(" "));
-        setCategoryAnswers(...categoryAnswers,response.data[0].Category.map((cat)=>cat.item))
+        response.data[0].Category.map((cat, ind) => {
+          // console.log(cat.item, response.data[0].Category[ind].category);
+          setCategoryAnswers((prevState) => ({
+            ...prevState,
+            [cat.item]: response.data[0].Category[ind].category,
+          }));
+          // Add the return statement here
+          return null;
+        });
+        setFormedSentence(response.data[0].Cloze[0].sentence);
+        response.data[0].Comprehension.map((ques, ind) => {
+          // console.log(ques.question);
+          setComprehensionAnswers((prevState) => ({
+            ...prevState,
+            [ques.question]: null,
+          }));
+          // Add the return statement here
+          return null;
+        });
       } catch (error) {
         console.error("Error fetching form data:", error);
       }
     };
 
     fetchFormData();
+    // eslint-disable-next-line
   }, []);
+  
 
-  const [formedSentence, setFormedSentence] = useState("");
-
-  const handleSelectOption = (questionIndex, optionIndex) => {
-    setFormData((prevFormData) => {
-      const updatedFormData = [...prevFormData];
-      updatedFormData[questionIndex].selectedOption = optionIndex;
-      return updatedFormData;
-    });
+  
+  const handleSelectOption = (question, selectedOption) => {
+    setComprehensionAnswers((prevState) => ({
+      ...prevState,
+      [question]:selectedOption,
+    }));
   };
 
-  const handleSelectChange = (event, word,index) => {
+  const handleSelectChange = (event, word, index) => {
     const updatedSentenceArr = [...clozeSentenceArr];
     updatedSentenceArr[index] = event.target.value;
-    setClozeSentenceArr(updatedSentenceArr)
-    setFormedSentence(updatedSentenceArr.join(' '));
-  
+    setClozeSentenceArr(updatedSentenceArr);
+    setFormedSentence(updatedSentenceArr.join(" "));
   };
   return (
       <div className="form-container my-2">
@@ -111,26 +151,27 @@ const Render = () => {
                 </div>
               </div>
             )}
-
-            {formPart.Comprehension.map((question, questionIndex) => (
-              <div className="comprehension my-5" key={questionIndex}>
-                <h2>Comprehension</h2>
+<h2 className=" my-5">Comprehension</h2>
+<p className="passage">{formPart.Comprehension[0].passage}</p>
+            {formPart.Comprehension.map((question, questionIndex) => ( 
+              <div className="comprehension my-4" key={questionIndex}>
+               
 
                 <p>Question {questionIndex+1+": "+question.question}</p>
                 <div className="some">
                   <ul>
                     {question.options.map((option, optionIndex) => (
-                      <div key={optionIndex}>
-                        <label>
-                          <input
+                      <div  key={optionIndex}>
+                        <label className="mx-3">
+                          <input 
                             type="radio"
                             name={`question-${questionIndex}`}
-                            checked={formPart.selectedOption === optionIndex}
+                            // checked={formPart.selectedOption === optionIndex}
                             onChange={() =>
-                              handleSelectOption(questionIndex, optionIndex)
+                              handleSelectOption(question.question,option)
                             }
                           />
-                          Option {optionIndex + 1}: {option}
+                        {" " +option}
                         </label>
                       </div>
                     ))}
@@ -140,7 +181,10 @@ const Render = () => {
             ))}
           </div>
         ))}
+        
+        <button className="btn btn-primary my-3" onClick={handleSaveResponses}>Save</button>
       </div>
+      
   );
 };
 

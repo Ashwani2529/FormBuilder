@@ -12,6 +12,8 @@ const Category = ({setFinalForm}) => {
       category: categories[0],
       isEditing: true,
     };
+    
+
     setItems((prevItems) => [...prevItems, newItem]);
   };
 

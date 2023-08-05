@@ -7,7 +7,7 @@ const FormSchema = new mongoose.Schema({
   }],
   Cloze: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Cloze",
+    ref: "Cloze", 
   }],
   Comprehension: [{
     type: mongoose.Schema.Types.ObjectId,
