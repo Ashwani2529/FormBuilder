@@ -13,7 +13,7 @@ const Home = () => {
   });
   const navigate=useNavigate();
   const handleSaveForm = async () => {
-    // console.log(finalForm);
+    console.log(finalForm);
     try {
       const resp = await fetch("https://formbuilder-44ek.onrender.com/saveForm", {
         method: "POST",
