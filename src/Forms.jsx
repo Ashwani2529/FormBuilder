@@ -10,7 +10,7 @@ const Forms = () => {
   const deleteForm=async (formId)=>{
     try{
       // eslint-disable-next-line
-      const resp=await fetch(`http://localhost:5000/deleteForm/${formId}`,{
+      const resp=await fetch(`https://formbuilder-44ek.onrender.com/deleteForm/${formId}`,{
       method:'DELETE',
       headers:{
         'Content-Type':'application/json'
@@ -30,7 +30,7 @@ const Forms = () => {
 
   const copyFormLink = async (formId) => {
     try {
-      await navigator.clipboard.writeText(`${window.location.origin}/render/${formId}`);
+      await navigator.clipboard.writeText(`https://formbuilder-44ek.onrender.com/render/${formId}`);
       toast("link copied");
     } catch (err) {
       console.log(err);
@@ -38,7 +38,7 @@ const Forms = () => {
   };
   const getAllForms = async () => {
     try {
-      const resp = await fetch("http://localhost:5000/getForm", {
+      const resp = await fetch("https://formbuilder-44ek.onrender.com/getForm", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ getAllForms();
       <div className="container">
         <div className="row">
           {allForms.map((form) => { 
-            return <div className="col-md-6">
+            return <div className="col-md-9">
               <div className="card mb-4 box-shadow mx-3">
                 <img
                   className="card-img-top"

@@ -6,7 +6,7 @@ const app = express();
 const PORT=5000
 
 app.use(cors({
-  origin:'http://localhost:3000',
+  origin:'https://formbuilder-44ek.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['*']
 }))

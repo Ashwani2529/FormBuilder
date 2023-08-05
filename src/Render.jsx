@@ -19,7 +19,7 @@ const Render = () => {
   useEffect(() => {
     const fetchFormData = async (formId) => {
       try {
-        const response = await axios.get(`http://localhost:5000/getoneForm/${formId}`);
+        const response = await axios.get(`https://formbuilder-44ek.onrender.com/getoneForm/${formId}`);
         setFormData(response.data);
         console.log(response.data);
         
@@ -62,7 +62,7 @@ const Render = () => {
     };
     // console.log("all responses: ",allResponses);
   
-   const res= await fetch(`http://localhost:5000/saveresp`, {
+   const res= await fetch(`https://formbuilder-44ek.onrender.com/saveresp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
