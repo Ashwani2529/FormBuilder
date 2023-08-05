@@ -4,7 +4,7 @@ const Navbar = (props) => {
   return (
     <nav className={"navbar navbar-expand-lg navbar-dark bg-dark"}>
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/home">
           {props.title}
         </Link><Link className="navbar-brand" to="/forms">
 Forms

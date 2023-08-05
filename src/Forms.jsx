@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import "./index.css";
 // import { useSearchParams } from "react-router-dom";
 // import CircularProgress from '@mui/material/CircularProgress';
 import SERVER_URL from "./server_url";
@@ -61,7 +62,7 @@ getAllForms();
     <div className="album py-1 bg-light">
       <h1 style={{margin:'30px 30px'}}>Forms</h1>
       {/* {(progressChk)?<CircularProgress style={{marginLeft:'100px'}}/>:null} */}
-      <div className="container">
+      <div className="containerx">
         <div className="row">
           {allForms.map((form) => { 
             return <div className="col">
@@ -105,9 +106,9 @@ getAllForms();
             </div>;
           })}
         </div>
-        <div className="but">
+        
         <button className="btn btn-primary" onClick={() => navigate("/home")}>Create your Form</button>
-      </div></div>
+      </div>
     </div>
   );
 };

@@ -18,6 +18,10 @@ code {
       height: auto; 
       
 }
+.containerx{
+  display: block;
+
+}
 .container h1{
   display:flex;
   align-items: center;
