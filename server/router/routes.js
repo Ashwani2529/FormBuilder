@@ -60,7 +60,7 @@ const saveComprehensionQuestions = async (comprehensionQuestions, passage) => {
 router.post("/saveForm", async (req, res) => {
   try {
     const { comprehension, cloze, category } = req.body;
-    console.log(comprehension);
+    // console.log(comprehension);
     const categoryIds = await saveCategoryQuestions(category.items);
     const clozeIds = await saveClozeQuestions(cloze);
     const comprehensionIds = await saveComprehensionQuestions(
