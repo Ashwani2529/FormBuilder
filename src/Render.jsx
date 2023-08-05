@@ -4,8 +4,7 @@ import "./Render.css"
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
-import {toast} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+
 
 const Render = () => {
   const [formData, setFormData] = useState();
@@ -72,7 +71,7 @@ const Render = () => {
     // eslint-disable-next-line
       const data=await res.json();
       setIsSubmitted(true);
-    toast("Form Submitted");
+    // toast("Form Submitted");
      navigate("/submit");
   };
   const [formedSentence, setFormedSentence] = useState("");

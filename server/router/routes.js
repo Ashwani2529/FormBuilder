@@ -57,7 +57,7 @@ const saveComprehensionQuestions = async (comprehensionQuestions, passage) => {
 };
 
  // Main route to handle form submission and save data to MongoDB
-router.post("/saveForms", async (req, res) => {
+router.post("/saveForm", async (req, res) => {
   try {
     const { comprehension, cloze, category } = req.body;
     const categoryIds = await saveCategoryQuestions(category.items);
@@ -71,10 +71,10 @@ router.post("/saveForms", async (req, res) => {
       Cloze: clozeIds,
       Comprehension: comprehensionIds,
     });
-    const savedFrom = await newForm.save();
+    const savedForm= await newForm.save();
     return res
       .status(201)
-      .json({ message: "Form data saved successfully", savedFrom: savedFrom });
+      .json({ message: "Form data saved successfully", savedForm: savedForm });
   } catch (err) {
     console.log(err);
     return res.status(500).send(err);
