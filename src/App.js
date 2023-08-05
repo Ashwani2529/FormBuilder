@@ -4,7 +4,7 @@ import Home from "./Home";
 import Navbar from "./Navbar";
 import Render from "./Render";
 import Forms from "./Forms";
-
+import Submit from "./Submit";
 function App() {
   
   return (
@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
          <Route path="/render" element={<Render/>}/>
          <Route path="/forms" element={<Forms/>}/>
+         <Route path="/submit" element={<Submit/>}/>
 
         </Routes>
       </Router>

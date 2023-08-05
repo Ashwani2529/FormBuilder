@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Render.css";
+import { useNavigate } from "react-router-dom";
 
 
 const Render = () => {
+  const navigate=useNavigate();
   const [formData, setFormData] = useState([]);
   const [comprehensionAnswers, setComprehensionAnswers] = useState({});
   const [categoryAnswers,setCategoryAnswers]=useState();
@@ -28,6 +30,7 @@ const Render = () => {
     // eslint-disable-next-line
       const data=await res.json();
       // console.log("dataaaa: ",data);
+     navigate("/submit");
   };
   
   useEffect(() => {
