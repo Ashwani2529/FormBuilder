@@ -62,7 +62,7 @@ getAllForms();
       <div className="container">
         <div className="row">
           {allForms.map((form) => { 
-            return <div className="col-md-9">
+            return <div className="col-md-12">
               <div className="card mb-4 box-shadow mx-3">
                 <img
                   className="card-img-top"
