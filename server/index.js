@@ -6,7 +6,7 @@ const app = express();
 const PORT=5000
 
 app.use(cors({
-  origin:'formxbuilder.netlify.app',
+  origin:'https://formxbuilder.netlify.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['*']
 }))

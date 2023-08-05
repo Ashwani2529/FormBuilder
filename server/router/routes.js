@@ -43,7 +43,7 @@ const saveClozeQuestions = async (clozeQuestions) => {
 const saveComprehensionQuestions = async (comprehensionQuestions, passage) => {
 
   const ids = [];
-  // console.log(comprehensionQuestions);
+  console.log(comprehensionQuestions);
   for (const ques of comprehensionQuestions) {
     const newQues = Comprehension({
       passage: passage,

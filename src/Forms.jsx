@@ -64,11 +64,11 @@ getAllForms();
       <div className="container">
         <div className="row">
           {allForms.map((form) => { 
-            return <div className="col-md-12">
+            return <div className="col-md-5">
               <div className="card mb-4 box-shadow mx-3">
                 <img
                   className="card-img-top"
-                  src="https://source.unsplash.com/collection/nature/198x225"
+                  src="https://source.unsplash.com/collection/random/198x225"
                   alt=""
                   style={{ height: "225px", width: "100%", display: "block" }}
                 />
@@ -79,7 +79,8 @@ getAllForms();
                       <button
                         type="button"
                         className="btn btn-sm btn-outline-secondary"
-                        onClick={() => navigate(`/render?id=${form._id}`)}
+                        onClick={() => {navigate(`/render?id=${form._id}`);
+                        }}
                       >
                         Fill
                       </button>

@@ -103,7 +103,7 @@ const Render = () => {
   };
   return (
     <div className="form-container my-2">
-      {(!isSubmitted)?<button style={{marginRight:'1600px'}} onClick={()=>navigate('/')}> back</button>:null}
+      {(!isSubmitted)?<button style={{marginRight:'1600px'}} onClick={()=>navigate('/')}>Back</button>:null}
       {(progressChk)?<CircularProgress/>:null}
      
         <div className="form-part my-5">
