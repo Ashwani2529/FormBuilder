@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+// import { useSearchParams } from "react-router-dom";
 // import CircularProgress from '@mui/material/CircularProgress';
-
+import SERVER_URL from "./server_url";
 // let i = 1;
 const Forms = () => {
   // const { id } = useParams();
+  // const [searchParams,setSearchParams]=useSearchParams();
   const deleteForm=async (formId)=>{
     try{
       // eslint-disable-next-line
-      const resp=await fetch(`https://formbuilder-44ek.onrender.com/deleteForm/${formId}`,{
+      const resp=await fetch(`${SERVER_URL}/deleteForm/${formId}`,{
       method:'DELETE',
       headers:{
         'Content-Type':'application/json'
@@ -30,7 +32,7 @@ const Forms = () => {
 
   const copyFormLink = async (formId) => {
     try {
-      await navigator.clipboard.writeText(`https://formxbuilder.netlify.app/render/${formId}`);
+      await navigator.clipboard.writeText(`${window.location.origin}/render?id=${formId}`);
       // toast("link copied");
     } catch (err) {
       console.log(err);
@@ -38,7 +40,7 @@ const Forms = () => {
   };
   const getAllForms = async () => {
     try {
-      const resp = await fetch("https://formbuilder-44ek.onrender.com/getForm", {
+      const resp = await fetch(`${SERVER_URL}/getForm`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +79,7 @@ getAllForms();
                       <button
                         type="button"
                         className="btn btn-sm btn-outline-secondary"
-                        onClick={() => navigate(`/render/${form._id}`)}
+                        onClick={() => navigate(`/render?id=${form._id}`)}
                       >
                         Fill
                       </button>
@@ -102,7 +104,7 @@ getAllForms();
             </div>;
           })}
         </div>
-        <button onClick={() => navigate("/")}>Create your Form</button>
+        <button onClick={() => navigate("/home")}>Create your Form</button>
       </div>
     </div>
   );

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Render.css"
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
-
+import { useSearchParams } from "react-router-dom";
+import SERVER_URL from "./server_url";
 
 const Render = () => {
+   // eslint-disable-next-line
+  const [searchParams,setSearchParams]=useSearchParams();
   const [formData, setFormData] = useState();
   const [categoryAnswers, setCategoryAnswers] = useState({});
   const [clozeSentenceArr, setClozeSentenceArr] = useState([]);
@@ -14,11 +17,12 @@ const Render = () => {
   const [progressChk, setProgressChk] = useState(false);
 
   const navigate=useNavigate();
-  const { id,view } = useParams();
+  const id=searchParams.get('id')
   useEffect(() => {
+    
     const fetchFormData = async (formId) => {
       try {
-        const response = await axios.get(`https://formbuilder-44ek.onrender.com/getoneForm/${formId}`);
+        const response = await axios.get(`${SERVER_URL}/getoneForm/${formId}`);
         setFormData(response.data);
         console.log(response.data);
         
@@ -61,7 +65,7 @@ const Render = () => {
     };
     // console.log("all responses: ",allResponses);
   
-   const res= await fetch(`https://formbuilder-44ek.onrender.com/saveresp`, {
+   const res= await fetch(`${SERVER_URL}/saveresp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -99,7 +103,7 @@ const Render = () => {
   };
   return (
     <div className="form-container my-2">
-      {(view==='true' && !isSubmitted)?<button style={{marginRight:'1600px'}} onClick={()=>navigate('/')}> back</button>:null}
+      {(!isSubmitted)?<button style={{marginRight:'1600px'}} onClick={()=>navigate('/')}> back</button>:null}
       {(progressChk)?<CircularProgress/>:null}
      
         <div className="form-part my-5">

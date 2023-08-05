@@ -4,6 +4,8 @@ import Category from "./components/Category";
 import Comprehension from "./components/Comprehension";
 import Cloze from "./components/Cloze";
 import { useNavigate } from "react-router-dom";
+import SERVER_URL from "./server_url";
+
 
 const Home = () => {
   const [finalForm, setFinalForm] = useState({
@@ -15,7 +17,7 @@ const Home = () => {
   const handleSaveForm = async () => {
     // console.log(finalForm);
     try {
-      const resp = await fetch("https://formbuilder-44ek.onrender.com/saveForm", {
+      const resp = await fetch(`${SERVER_URL}/saveForm`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
