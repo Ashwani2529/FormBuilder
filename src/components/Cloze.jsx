@@ -9,6 +9,7 @@ const Cloze = ({setFinalForm}) => {
 
   const handleSentenceChange = (e) => {
     const value = e.target.value;
+    // eslint-disable-next-line
     const words = value.match(/\S+/g) || [];
     setSentence(value);
   };

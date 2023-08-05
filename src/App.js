@@ -13,7 +13,8 @@ function App() {
         <Navbar key={new Date()} />
         <Routes>
           <Route path="/" element={<Home />} />
-         <Route path="/render" element={<Render/>}/>
+          {/* <Route path="/render" element={<Render/>}/> */}
+         <Route path="/render/:id" element={<Render/>}/>
          <Route path="/forms" element={<Forms/>}/>
          <Route path="/submit" element={<Submit/>}/>
 

@@ -3,13 +3,13 @@ import "./index.css"
 const Submit = () => {
   return (
    <>
-      <header class="site-header" id="header">
-        <h1 class="site-header__title" data-lead-id="site-header-title">THANK YOU!</h1>
+      <header className="site-header" id="header">
+        <h1 className="site-header__title" data-lead-id="site-header-title">THANK YOU!</h1>
         <p>Your Response has been Submitted</p>
       </header>
 
-      <div class="main-content">
-        <i class="fa fa-check main-content__checkmark" id="checkmark"></i>
+      <div className="main-content">
+        <i className="fa fa-check main-content__checkmark" id="checkmark"></i>
       </div></>
 
   );

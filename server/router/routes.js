@@ -82,16 +82,34 @@ router.post("/saveForms", async (req, res) => {
 
 //fetchform_to_render.jsx
 
+
 router.get('/getForm', async (req, res) => {
   try {
     const formData = await Form.find().populate('Category').populate('Cloze').populate('Comprehension');
-    // console.log(formData);
+  
     res.json(formData);
   } catch (err) {
     console.error('Error fetching form data:', err);
     res.status(500).json({ error: 'Error fetching form data' });
   }
 });
+
+router.get('/getoneForm/:formId', async (req, res) => {
+  const formId = req.params.formId;
+  // console.log(formId);
+  try {
+    const formData = await Form.findById(formId).populate('Category').populate('Cloze').populate('Comprehension');
+
+    if (!formData) {
+      return res.status(404).json({ error: 'Form not found' });
+    }
+    res.json(formData);
+  } catch (err) {
+    console.error('Error fetching form data:', err);
+    res.status(500).json({ error: 'Error fetching form data' });
+  }
+});
+
 router.post('/saveresp', async (req, res) => {
   const { responses } = req.body;
   // console.log( "response" , responses);
@@ -102,4 +120,20 @@ router.post('/saveresp', async (req, res) => {
   res.json({data: savedResp.responses })
 });
 
+router.delete("/deleteForm/:id", async (req, res) => {
+  const id = req.params.id;
+  // console.log(id);
+  try {
+    const existingForm = await Form.findById(id);
+    // console.log(existingForm)
+    if (!existingForm) {
+      return res.status(404).json({ error: "Form not found" });
+    }
+    await Form.findByIdAndDelete(id);
+    res.json({ message: "Form deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting form:", err);
+    res.status(500).json({ error: "Error deleting form" });
+  }
+});
 module.exports = router;

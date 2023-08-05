@@ -3,6 +3,9 @@ import "./index.css";
 import Category from "./components/Category";
 import Comprehension from "./components/Comprehension";
 import Cloze from "./components/Cloze";
+import { useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const [finalForm, setFinalForm] = useState({
@@ -10,6 +13,7 @@ const Home = () => {
     cloze: null,
     comprehension: null,
   });
+  const navigate=useNavigate();
   const handleSaveForm = async () => {
     // console.log(finalForm);
     try {
@@ -23,7 +27,9 @@ const Home = () => {
       // resp.send();
       
       const result = await resp.json();
+      toast("Form Created");
       setFinalForm(result);
+      navigate('/forms');
       // console.log(result);
     } catch (err) {
       console.log(err);
