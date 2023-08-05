@@ -5,7 +5,7 @@ const Cloze = require("../schemas/cloze.js");
 const Comprehension = require("../schemas/comprehension.js");
 const Form = require("../schemas/form.js");
 // app.use(cors());
-router.use(cors());
+// router.use(cors());
 const mongoose = require("mongoose");
 
 const responseSchema = new mongoose.Schema({
