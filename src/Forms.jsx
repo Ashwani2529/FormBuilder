@@ -64,7 +64,7 @@ getAllForms();
       <div className="container">
         <div className="row">
           {allForms.map((form) => { 
-            return <div className="col-md-5">
+            return <div className="col">
               <div className="card mb-4 box-shadow mx-3">
                 <img
                   className="card-img-top"
@@ -105,8 +105,9 @@ getAllForms();
             </div>;
           })}
         </div>
-        <button onClick={() => navigate("/home")}>Create your Form</button>
-      </div>
+        <div className="but">
+        <button className="btn btn-primary" onClick={() => navigate("/home")}>Create your Form</button>
+      </div></div>
     </div>
   );
 };

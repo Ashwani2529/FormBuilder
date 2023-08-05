@@ -14,14 +14,15 @@ code {
     monospace;
 }
 .container{
-  display: flex;
-  flex-direction: column;
-      /* justify-content: center; */
-      align-items: center; 
+  display: -webkit-inline-box;
       height: auto; 
       
 }
 .container h1{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  left:50%;
   font-size: 24px;
   font-weight: bold;
   color: #333;
@@ -30,7 +31,7 @@ code {
   border: 1px solid #ccc;
   border-radius: 8px;
   position: relative;
-  top :42px;
-  left: 20%;
+  top :47px;
+  
   transform: translate(-50%, -50%);
 }
