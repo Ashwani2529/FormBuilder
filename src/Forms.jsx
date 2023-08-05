@@ -30,8 +30,8 @@ const Forms = () => {
 
   const copyFormLink = async (formId) => {
     try {
-      await navigator.clipboard.writeText(`https://formbuilder-44ek.onrender.com/render/${formId}`);
-      toast("link copied");
+      await navigator.clipboard.writeText(`https://formxbuilder.netlify.app/render/${formId}`);
+      // toast("link copied");
     } catch (err) {
       console.log(err);
     }
