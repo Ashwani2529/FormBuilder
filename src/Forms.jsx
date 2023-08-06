@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import "./index.css";
-// import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 // import CircularProgress from '@mui/material/CircularProgress';
 import SERVER_URL from "./server_url";
 // let i = 1;
 const Forms = () => {
-  // const { id } = useParams();
-  // const [searchParams,setSearchParams]=useSearchParams();
+  
+  // eslint-disable-next-line
+  const [searchParams,setSearchParams]=useSearchParams();
   const deleteForm=async (formId)=>{
     try{
       // eslint-disable-next-line
@@ -80,7 +81,8 @@ getAllForms();
                       <button
                         type="button"
                         className="btn btn-sm btn-outline-secondary"
-                        onClick={() => {navigate(`/render?id=${form._id}`);
+                        onClick={() => { setSearchParams({id:form._id});
+                        navigate(`/render?id=${form._id}`);
                         }}
                       >
                         Fill
@@ -88,7 +90,9 @@ getAllForms();
                       <button
                         type="button"
                         className="btn btn-sm btn-outline-secondary"
-                        onClick={() => copyFormLink(form._id)}
+                        onClick={() =>{ 
+                          setSearchParams({id:form._id});
+                          copyFormLink(form._id);}}
                       >
                         Copy Link
                       </button>
